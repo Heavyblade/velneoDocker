@@ -1,0 +1,16 @@
+set daemon 20
+set init
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set httpd port 2812
+    allow localhost
+set eventqueue
+    basedir /var/lib/monit/events # set the base directory where events will be stored
+    slots 100                     # optionally limit the queue size
+check process vserver
+   matching "./vServer -s /log"
+   start program = "./Velneo-vServer/vServer.sh -s /log"
+   stop program  = "./Velneo-vServer/vServer.sh -t"
+   if 5 restarts within 5 cycles then timeout
