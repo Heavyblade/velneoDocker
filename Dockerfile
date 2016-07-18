@@ -8,16 +8,14 @@ RUN apt-get -y update
 RUN apt-get -y install ia32-libs
 
 # Herramienta de monitorización para que arranque el vserver
-RUN apt-get -y install wget
 RUN apt-get -y install monit
 COPY monitrc /etc/monitrc
 RUN chmod 0700 /etc/monitrc
 EXPOSE 2812
 
 # Copia el vServer de la carpeta actual dentro de container
-RUN wget https://s3.amazonaws.com/vback/vserver.719.tar.gz
-COPY vserver_file.tar.gz vserver.tar.gz
-RUN tar -zxvf vserver.tar.gz
+COPY vserver.719.tar.gz vserver.tar.gz
+RUN tar -zxf vserver.tar.gz
 EXPOSE 690
 
 CMD monit -d 10 -Ic /etc/monitrc

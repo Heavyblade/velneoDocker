@@ -5,7 +5,7 @@ set idfile /var/lib/monit/id
 set statefile /var/lib/monit/state
 
 set httpd port 2812
-    allow localhost
+    allow velneo:velneo
 set eventqueue
     basedir /var/lib/monit/events # set the base directory where events will be stored
     slots 100                     # optionally limit the queue size
