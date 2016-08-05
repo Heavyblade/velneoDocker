@@ -1,0 +1,8 @@
+FROM heavyblade/vserver
+
+# Copia el vServer de la carpeta actual dentro de container
+COPY vserver.719.tar.gz vserver.tar.gz
+RUN tar -zxf vserver.tar.gz
+EXPOSE 690
+
+CMD monit -d 10 -Ic /etc/monitrc

@@ -13,9 +13,5 @@ COPY monitrc /etc/monitrc
 RUN chmod 0700 /etc/monitrc
 EXPOSE 2812
 
-# Copia el vServer de la carpeta actual dentro de container
-COPY vserver.719.tar.gz vserver.tar.gz
-RUN tar -zxf vserver.tar.gz
-EXPOSE 690
-
-CMD monit -d 10 -Ic /etc/monitrc
+RUN mkdir /home/data
+VOLUME ["/Velneo"]
